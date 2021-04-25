@@ -6,27 +6,6 @@ let map;
 let service;
 let infowindow;
 
-function currentLocation(){
-    if(navigator.geolocation){
-        navigator.geolocation.getCurrentPosition((position) => {
-            console.log(position.coords.latitude)
-            let pos = {lat: position.coords.latitude, lng: position.coords.longitude};
-            // map.setCenter(pos);
-            console.log("set center: " + pos);
-            return pos;
-            // let marker = new google.maps.Marker({
-            //     position: pos,
-            //     map: map
-            // });
-        });
-    }else{
-        /* Get location of IP*/
-        let location = {lat: 42.361145, lng: -71.057083};
-        return location;
-        alert("Not supported.");
-    }
-}
-
 function newLocation(){
     return new Promise((resolve, reject) => {
         if(navigator.geolocation){
@@ -36,6 +15,7 @@ function newLocation(){
             });
         }else{
             // let pos = {lat: position.coords.latitude, lng: position.coords.longitude};
+            
             reject(new Error("ERRRORORORORORO"));
         }
     });
@@ -74,30 +54,6 @@ function loadMap(){
     }, function(error){
         console.log(error);
     })
-    // currentLocation((pos) => {
-    //     console.log("POS: " + pos.lat);
-    // });
-    // let pos = currentLocation().then(console.log);
-    // console.log("pos: " + pos.lat);
-    // let marker = new google.maps.Marker({
-    //     position: location,
-    //     map: map
-    // });
-
-    // const request = {
-    //     radius: 80467,
-    //     location: location,
-    //     keyword: "Beach"
-    // };
-
-    // service = new google.maps.places.PlacesService(map);
-    // service.nearbySearch(request, (results, status) => {
-    //     if (status == google.maps.places.PlacesServiceStatus.OK && results){
-    //         for(let i = 0; i < results.length; i++){
-    //             createMarker(results[i]);
-    //         }
-    //     }
-    // });
 }
 
 function createMarker(place) {
@@ -121,4 +77,8 @@ function createMarker(place) {
         infowindow.open(map, marker);
         console.log(place.name);
     });
+  }
+
+  function createBeachElement(){
+      
   }

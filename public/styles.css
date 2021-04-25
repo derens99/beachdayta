@@ -1,8 +1,69 @@
+@import url('https://fonts.googleapis.com/css2?family=Mukta&display=swap');
+*{
+    font-family: 'Mukta', sans-serif;
+}
+
+.barback{
+    background-color: #BBDBF7;
+    color: #F9D199;
+}
+
 .beachback{
-    background-color: #F6E3D4;
+    background-color: #f8ebe2;
+    background-color: #BBDBF7;
+}
+
+#banner{
+    color: white;
+    padding: 16em 0 16em 0;
+    text-align: center;
+    background-attachment: scroll;
+    background-image: url("images/beach.jpg");
+    background-position: center;
+    background-size: cover;
+}
+
+#banner h2{
+    margin-top: 0.5em;
+    font-size: 3.5em;
+    line-height: 1.35;
+    margin-bottom: 0.5em;
+    position: absolute;
+    top: 15%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+#banner p{
+    font-size: 1.5em;
+    margin-bottom: 1.75em;
+    text-transform: uppercase;
+    position: absolute;
+    top: 30%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #f8ebe2;
 }
 
 #map{
-    height: 50vh;
-    width: 100vw;
+    margin-top: 10vh;
+    height: 70vh;
+}
+
+header.major{
+    margin: 0 0 6em 0;
+}
+
+header.major h2{
+    font-size: 3em;
+}
+
+header.major h2{
+    display: inline-block;
+    /* margin: 0 0 0 0.8em; */
+}
+
+header.major p {
+    font-size: 1.7em;
+    margin-bottom: 0;
 }
