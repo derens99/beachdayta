@@ -2,31 +2,62 @@
 const PLACES_KEY = "AIzaSyAFM9agRaYquHxxOemaUEcd9s3GBVXo60M";
 const MAPS_KEY = "AIzaSyAFM9agRaYquHxxOemaUEcd9s3GBVXo60M";
 
+let map;
+let service;
+let infowindow;
+
 function loadMap(){
     var location = {lat: 42.361145, lng: -71.057083};
-    var map = new google.maps.Map(document.getElementById("map"), {
+    infowindow = new google.maps.InfoWindow();
+    map = new google.maps.Map(document.getElementById("map"), {
         zoom: 15,
         center: location
     });
-    var marker = new google.maps.Marker({
+    let marker = new google.maps.Marker({
         position: location,
         map: map
     });
+
+    const request = {
+        radius: 80467,
+        location: location,
+        keyword: "Beach"
+        // fields: ['name', 'geometry'],
+    };
+
+    service = new google.maps.places.PlacesService(map);
+    service.nearbySearch(request, (results, status) => {
+        if (status == google.maps.places.PlacesServiceStatus.OK && results){
+            for(let i = 0; i < results.length; i++){
+                createMarker(results[i]);
+            }
+        }
+    });
 }
 
-async function getPlaces(){
-    /* EXAMPLE URL CALL
-       https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=42.361145,-71.057083&radius=80467.2&keyword=beach&key=AIzaSyAFM9agRaYquHxxOemaUEcd9s3GBVXo60M
-    */
-    let lat = 42.361145;
-    let lng = -71.057083;
-    let radius = 80467.2;
-    var url = "https://maps.googleapis.com/maps/api/place/nearbysearch/json?location=" + lat + "," + lng + "&radius=" + radius + "&keyword=beach&key=" + MAPS_KEY;
-    alert(url);
-    console.log(url);
+function createMarker(place) {
+    if (!place.geometry || !place.geometry.location) return;
+    console.log(place);
 
-    let response = await fetch(url);
-    let data = await response.json();
-    return data
-}
-getPlaces().then(data => console.log(data));
+    const marker = new google.maps.Marker({
+      map,
+      position: place.geometry.location,
+      title: place.name,
+     
+    });
+
+    const placeContent = place.name + "\r" + "Rating: " + place.rating;
+    const infowindow = new google.maps.InfoWindow({
+        content: placeContent,
+        title: place.name,
+        maxWidth: 200
+    });
+    // marker.setMap(map);
+    marker.addListener("click", () => {
+        infowindow.open(map, marker);
+        console.log(place.name);
+    });
+    // google.maps.event.addListener(marker, "click", () => {
+      
+    // });
+  }
