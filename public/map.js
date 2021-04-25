@@ -6,38 +6,103 @@ let map;
 let service;
 let infowindow;
 
+function currentLocation(){
+    if(navigator.geolocation){
+        navigator.geolocation.getCurrentPosition((position) => {
+            console.log(position.coords.latitude)
+            let pos = {lat: position.coords.latitude, lng: position.coords.longitude};
+            // map.setCenter(pos);
+            console.log("set center: " + pos);
+            return pos;
+            // let marker = new google.maps.Marker({
+            //     position: pos,
+            //     map: map
+            // });
+        });
+    }else{
+        /* Get location of IP*/
+        let location = {lat: 42.361145, lng: -71.057083};
+        return location;
+        alert("Not supported.");
+    }
+}
+
+function newLocation(){
+    return new Promise((resolve, reject) => {
+        if(navigator.geolocation){
+            navigator.geolocation.getCurrentPosition((position) => {
+                console.log("YAY");
+                resolve(position);
+            });
+        }else{
+            // let pos = {lat: position.coords.latitude, lng: position.coords.longitude};
+            reject(new Error("ERRRORORORORORO"));
+        }
+    });
+}
+// var location = currentLocation();
+
 function loadMap(){
     var location = {lat: 42.361145, lng: -71.057083};
     infowindow = new google.maps.InfoWindow();
     map = new google.maps.Map(document.getElementById("map"), {
-        zoom: 15,
+        zoom: 13,
         center: location
     });
-    let marker = new google.maps.Marker({
-        position: location,
-        map: map
-    });
+    newLocation().then(function(response){
+        console.log(response.coords.latitude);
+        location = {lat: response.coords.latitude, lng: response.coords.longitude};
+        let marker = new google.maps.Marker({
+            position: location,
+            map: map
+        });
 
-    const request = {
-        radius: 80467,
-        location: location,
-        keyword: "Beach"
-        // fields: ['name', 'geometry'],
-    };
+        const request = {
+            radius: 80467,
+            location: location,
+            keyword: "Beach"
+        };
 
-    service = new google.maps.places.PlacesService(map);
-    service.nearbySearch(request, (results, status) => {
-        if (status == google.maps.places.PlacesServiceStatus.OK && results){
-            for(let i = 0; i < results.length; i++){
-                createMarker(results[i]);
+        service = new google.maps.places.PlacesService(map);
+        service.nearbySearch(request, (results, status) => {
+            if (status == google.maps.places.PlacesServiceStatus.OK && results){
+                for(let i = 0; i < results.length; i++){
+                    createMarker(results[i]);
+                }
             }
-        }
-    });
+        });
+    }, function(error){
+        console.log(error);
+    })
+    // currentLocation((pos) => {
+    //     console.log("POS: " + pos.lat);
+    // });
+    // let pos = currentLocation().then(console.log);
+    // console.log("pos: " + pos.lat);
+    // let marker = new google.maps.Marker({
+    //     position: location,
+    //     map: map
+    // });
+
+    // const request = {
+    //     radius: 80467,
+    //     location: location,
+    //     keyword: "Beach"
+    // };
+
+    // service = new google.maps.places.PlacesService(map);
+    // service.nearbySearch(request, (results, status) => {
+    //     if (status == google.maps.places.PlacesServiceStatus.OK && results){
+    //         for(let i = 0; i < results.length; i++){
+    //             createMarker(results[i]);
+    //         }
+    //     }
+    // });
 }
 
 function createMarker(place) {
     if (!place.geometry || !place.geometry.location) return;
-    console.log(place);
+    // console.log(place);
 
     const marker = new google.maps.Marker({
       map,
@@ -52,12 +117,8 @@ function createMarker(place) {
         title: place.name,
         maxWidth: 200
     });
-    // marker.setMap(map);
     marker.addListener("click", () => {
         infowindow.open(map, marker);
         console.log(place.name);
     });
-    // google.maps.event.addListener(marker, "click", () => {
-      
-    // });
   }
