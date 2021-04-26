@@ -30,7 +30,7 @@ function loadMap(){
         location = {lat: response.coords.latitude, lng: response.coords.longitude};
         
         /* TESTING VARIABLES */
-        location = {lat: 41.573360, lng: -70.460670};
+        //location = {lat: 41.573360, lng: -70.460670};
 
         map = new google.maps.Map(document.getElementById("map"), {
             zoom: 13,
