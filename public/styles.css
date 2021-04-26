@@ -3,6 +3,10 @@
     font-family: 'Mukta', sans-serif;
 }
 
+body{
+    background-color: #BBDBF7;;
+}
+
 .barback{
     background-color: #BBDBF7;
     color: #F9D199;
@@ -28,30 +32,22 @@
     font-size: 3.5em;
     line-height: 1.35;
     margin-bottom: 0.5em;
-    position: absolute;
-    top: 15%;
-    left: 50%;
-    transform: translate(-50%, -50%);
 }
 
 #banner p{
     font-size: 1.5em;
     margin-bottom: 1.75em;
     text-transform: uppercase;
-    position: absolute;
-    top: 30%;
-    left: 50%;
-    transform: translate(-50%, -50%);
     color: #f8ebe2;
 }
 
 #map{
-    margin-top: 10vh;
-    height: 70vh;
+    /* margin-top: 10vh; */
+    height: 80vh;
 }
 
 header.major{
-    margin: 0 0 6em 0;
+    /* margin: 0 0 6em 0; */
 }
 
 header.major h2{
@@ -65,5 +61,5 @@ header.major h2{
 
 header.major p {
     font-size: 1.7em;
-    margin-bottom: 0;
+    /* margin-bottom: 0; */
 }
