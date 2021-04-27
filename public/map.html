@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Beach Dayta</title>
+    <script src="https://polyfill.io/v3/polyfill.min.js?features=default"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href="styles.css">
+    <script src="map.js"></script>
+    <script src="api.js"></script>
+
+  </head>
+  <body>
+        <nav class="navbar navbar-expand-sm navbar-light barback">
+            <a href="index.html" class="navbar-brand">Beach Dayta</a>
+            <button class="navbar-toggler" data-toggle="collapse" data-target="#navbarMenu">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarMenu">
+                <ul class="navbar-nav">
+                    <li class="nav-item">
+                        <a href="explore.html" class="nav-link">Explore</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#" class="nav-link">Products</a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <div class="container-fluid beachback">
+            <!-- <div id="banner">
+                <h2>Beach Dayta</h2>
+                <p>Find the best nearby beaches from the map below. <br> Click the beach marker to get more details!</p>
+            </div> -->
+            <header class="major">
+                <h2>Beach Map</h2>
+                <p>Here is a map of beaches near you, in a 50 mile radius.</p>
+            </header>
+            <div class="row">
+                <div class="col-sm-9">
+                    <div class="pac-card" id="pac-card">
+                        <div>
+                            <div id="title">Beach search</div>
+                            <div id="type-selector" class="pac-controls">
+                                <label for="radius">Radius (miles)</label>
+                                <!-- <input onchange="onRadiusChange()" type="number" id="radius" name="radius" min="10" max="500" step="10" value="50"> -->
+                                <input type="number" id="radius" name="radius" min="10" max="500" step="10" value="50">
+
+                            </div>
+                            <br />
+                            
+                          </div>
+                          <div id="pac-container">
+                            <input id="pac-input" type="text" placeholder="Enter a location" />
+                          </div>
+                    </div>
+                    <div id='map'></div>
+                </div>
+                <div class="col-sm-3" id="cardspot">
+                    <div class="card">
+                        <img class="card-img-top" id="beachimg" src="images/beach.jpg" alt="Beach Info">
+                        <div class="card-body">
+                            <h5 class="card-title" id="beach-title">Click a beach to get info!</h5>
+                            <p class="card-text" id='address'>
+                                <a href="#" id="address_url"></a>
+                            </p>
+                            <h5 id="weathertag" style="display: none;">Weather Data</h5>
+                            <p id="weathertitle"></p>
+                            <p id='temp'></p>
+                            <p id="feels"></p>
+                            <p id="wind"></p>
+                            <p id="weathertitle"></p>
+                            <p id="humidity"></p>
+                            <p id="pressure"></p>
+                            
+                            
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+           
+        </div>
+
+        <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAFM9agRaYquHxxOemaUEcd9s3GBVXo60M&libraries=places,geometry&callback=loadMap" async defer></script>
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
+    </body>
+    <footer>
+        <p>Copyright @ Deren Singh</p>
+        <p><a href="mailto:derens99@gmail.com">derens99@gmail.com</a></p>
+    </footer>
+</html>

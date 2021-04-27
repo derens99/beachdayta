@@ -233,12 +233,60 @@ function createMarker(place) {
     marker.addListener("click", () => {
         infowindow.open(map, marker);
         console.log(place.name);
+        createBeachCard(place);
     });
     });
-
-    
   }
 
-  function createBeachElement(){
+function createBeachCard(place){
+    clearCurrentCard();
+    getPlacesDetails(place.place_id).then(function(place_object){
+        if(place_object !== undefined){
+            console.log(place_object);
+            weather(place_object.geometry.location.lat(), place_object.geometry.location.lng()).then(function(weather_data){
+                console.log(place_object);
+                if(place_object.photos != undefined){
+                    document.getElementById("beachimg").src = place_object.photos[0].getUrl();
+                }
+                
+                document.getElementById("beach-title").innerHTML = place.name;
+                // "<p><a href='" + placeObject.url +"'>" + placeObject.formatted_address +"</a>" + "</p>"
+                document.getElementById("address_url").href = place_object.url;
+                document.getElementById("address_url").innerHTML = place_object.formatted_address;
 
-  }
+                document.getElementById("address").style.display = "inline-block";
+                document.getElementById("weathertag").style.display = "inline-block";
+                let temp = weather_data.temperature;
+                console.log(temp);
+                document.getElementById("weathertitle").innerHTML = weather_data.title + " (" + weather_data.description + ")";
+                document.getElementById("temp").innerHTML = "Temperature: " + temp + "°F";
+                document.getElementById("feels").innerHTML = "Feels Like: " + weather_data.feels_like + "°F";
+                document.getElementById("wind").innerHTML = "Wind Speed: " + weather_data.wind + " mph";
+                document.getElementById("humidity").innerHTML = "Humidity: " + weather_data.humidity;
+                document.getElementById("pressure").innerHTML = "Pressure: " + weather_data.pressure;
+            });
+        }
+    });
+}
+
+function clearCurrentCard(){
+    document.getElementById.innerHTML = "";
+}
+
+function getPlacesDetails(place_id){
+    return new Promise((resolve, reject) => {
+        const request = {
+            placeId: place_id
+        };
+
+        service.getDetails(request, (placeObject, status) => {
+            let placeContent;
+            if(status === google.maps.places.PlacesServiceStatus.OK &&placeObject){
+                resolve(placeObject);
+            }else{
+                reject(new Error("No place details."))
+            }
+        });
+    });
+}
+
