@@ -4,7 +4,7 @@
 }
 
 body{
-    background-color: #BBDBF7;;
+    background-color: #f8decc;
 }
 
 .barback{
@@ -13,8 +13,8 @@ body{
 }
 
 .beachback{
-    background-color: #f8ebe2;
-    background-color: #BBDBF7;
+    padding-top: 2vh;
+    background-color: #f8decc;
 }
 
 #banner{
@@ -29,7 +29,7 @@ body{
 
 #banner h2{
     margin-top: 0.5em;
-    font-size: 3.5em;
+    font-size: 3.8em;
     line-height: 1.35;
     margin-bottom: 0.5em;
 }
@@ -39,10 +39,10 @@ body{
     margin-bottom: 1.75em;
     text-transform: uppercase;
     color: #f8ebe2;
+    font-style: italic;
 }
 
 #map{
-    /* margin-top: 10vh; */
     height: 80vh;
 }
 
@@ -51,7 +51,7 @@ header.major{
 }
 
 header.major h2{
-    font-size: 3em;
+    font-size: 3.8em;
 }
 
 header.major h2{
@@ -61,5 +61,60 @@ header.major h2{
 
 header.major p {
     font-size: 1.7em;
+    font-style: italic;
     /* margin-bottom: 0; */
 }
+
+footer{
+    text-align: center;
+}
+
+.pac-card {
+    margin: 10px 10px 0 0;
+    border-radius: 2px 0 0 2px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    outline: none;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+    background-color: #fff;
+    font-family: Roboto;
+  }
+  
+  #pac-container {
+    padding-bottom: 12px;
+    margin-right: 12px;
+  }
+  
+  .pac-controls {
+    display: inline-block;
+    padding: 5px 11px;
+  }
+  
+  .pac-controls label {
+    font-family: Roboto;
+    font-size: 13px;
+    font-weight: 300;
+  }
+  
+  #pac-input {
+    background-color: #fff;
+    font-family: Roboto;
+    font-size: 15px;
+    font-weight: 300;
+    margin-left: 12px;
+    padding: 0 11px 0 13px;
+    text-overflow: ellipsis;
+    width: 400px;
+  }
+  
+  #pac-input:focus {
+    border-color: #4d90fe;
+  }
+  
+  #title {
+    color: #fff;
+    background-color: #4d90fe;
+    font-size: 25px;
+    font-weight: 500;
+    padding: 6px 12px;
+  }
