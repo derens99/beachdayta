@@ -88,7 +88,7 @@ function createHTMLCard(place){
                     button.setAttribute("data-toggle", "collapse");
                     button.setAttribute("data-target", "#"+place.name.replace(/\s+/g, ''));
 
-                    fetch("http://beachdayta.ue.r.appspot.com/beachdata?latitude=42.3601&longitude=-71.0589")
+                    fetch("https://beachdayta.ue.r.appspot.com/beachdata?latitude=42.3601&longitude=-71.0589")
                         .then(response => response.json())
                         .then(data => { 
                             weatherDataDiv.innerHTML = "";

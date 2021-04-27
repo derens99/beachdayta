@@ -1,6 +1,6 @@
 function getWeather(lat, lng){
-    let url = "http://beachdayta.ue.r.appspot.com/beachdata?latitude=42.3601&longitude=-71.0589";
-    fetch("http://beachdayta.ue.r.appspot.com/beachdata?latitude=42.3601&longitude=-71.0589")
+    let url = "https://beachdayta.ue.r.appspot.com/beachdata?latitude=42.3601&longitude=-71.0589";
+    fetch("https://beachdayta.ue.r.appspot.com/beachdata?latitude=42.3601&longitude=-71.0589")
             .then(response => response.json())
             .then(data => {
                 console.log(data);
@@ -12,7 +12,7 @@ function getWeather(lat, lng){
 
 function weather(lat, lng){
     return new Promise((resolve, reject) => {
-        let url = "http://beachdayta.ue.r.appspot.com/beachdata?latitude=" + lat + "&longitude=" + lng;
+        let url = "https://beachdayta.ue.r.appspot.com/beachdata?latitude=" + lat + "&longitude=" + lng;
         fetch(url)
             .then(response => response.json())
             .then(data => {
